@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdio.h>
+
+#define ALUNOS 5
+#define DISCIPLINAS 4
+
+void calcularMedias(float notas[ALUNOS][DISCIPLINAS], float medias[ALUNOS]) {
+    for (int aluno = 0; aluno < ALUNOS; aluno++) {
+        float soma = 0.0;
+        for (int disciplina = 0; disciplina < DISCIPLINAS; disciplina++) {
+            soma += notas[aluno][disciplina];
+        }
+        medias[aluno] = soma / DISCIPLINAS;
+    }
+}
+
+void exibirResultados(float notas[ALUNOS][DISCIPLINAS], float medias[ALUNOS]) {
+    printf("\nRegistro de Notas:\n");
+
+    // Exibe as notas e médias
+    for (int aluno = 0; aluno < ALUNOS; aluno++) {
+        printf("Aluno %d: ", aluno + 1);
+        for (int disciplina = 0; disciplina < DISCIPLINAS; disciplina++) {
+            printf("%.2f ", notas[aluno][disciplina]);
+        }
+        printf(" - Média: %.2f\n", medias[aluno]);
+    }
+}
+
+void identificarAlunosAbaixoMedia(float medias[ALUNOS]) {
+    printf("\nAlunos com média abaixo de 6.0:\n");
+
+    // Identifica e exibe os alunos com média abaixo de 6.0
+    for (int aluno = 0; aluno < ALUNOS; aluno++) {
+        if (medias[aluno] < 6.0) {
+            printf("Aluno %d - Média: %.2f\n", aluno + 1, medias[aluno]);
+        }
+    }
+}
+
+int main() {
+    float notas[ALUNOS][DISCIPLINAS];
+    float medias[ALUNOS];
+
+    // Solicitação de entrada das notas
+    for (int aluno = 0; aluno < ALUNOS; aluno++) {
+        printf("Digite as notas do Aluno %d (4 disciplinas): ", aluno + 1);
+        for (int disciplina = 0; disciplina < DISCIPLINAS; disciplina++) {
+            scanf("%f", &notas[aluno][disciplina]);
+        }
+    }
+
+    // Calcula as médias
+    calcularMedias(notas, medias);
+
+    // Exibe os resultados
+    exibirResultados(notas, medias);
+
+    // Identifica alunos com média abaixo de 6.0
+    identificarAlunosAbaixoMedia(medias);
+
+    return 0;
+}

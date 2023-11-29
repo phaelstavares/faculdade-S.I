@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define SALAS 3
+#define HORARIOS 5
+
+void imprimirGrade(int grade[SALAS][HORARIOS]) {
+    printf("\n Grade de alocação de salas: \n");
+
+    printf("  ");
+    for (int sala = 0; sala < SALAS; sala++) {
+        printf("Sala %d  ", sala + 1);
+    }
+    printf("\n");
+
+    for (int horario = 0; horario < HORARIOS; horario++) {
+        printf("Hora %d ", horario + 1);
+        for (int sala = 0; sala < SALAS; sala++) {
+            printf("   %d     ", grade[sala][horario]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int grade[SALAS][HORARIOS] = {0};
+
+    grade[0][0] = 1;
+    grade[1][2] = 2;
+    grade[2][1] = 3;
+
+    imprimirGrade(grade);
+
+    int sala, horario, turma;
+    printf("\nDigite o número da sala (1 a %d): ", SALAS);
+    scanf("%d", &sala);
+    printf("Digite o número do horário (1 a %d): ", HORARIOS);
+    scanf("%d", &horario);
+    printf("Digite o número da turma: ");
+    scanf("%d", &turma);
+
+    if (sala >= 1 && sala <= SALAS && horario >= 1 && horario <= HORARIOS && grade[sala - 1][horario - 1] == 0) {
+        grade[sala - 1][horario - 1] = turma;
+        printf("\nAlocação bem-sucedida!\n");
+
+        imprimirGrade(grade);
+    } else {
+        printf("\nErro: Sala ou horário já alocado ou valores inválidos.\n");
+    }
+
+    return 0;
+}

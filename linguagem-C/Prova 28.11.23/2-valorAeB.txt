@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main() {
+    
+    int a, b, final;
+
+    printf("Digite o valor para A: ");
+    scanf("%d", &a);
+
+    printf("Digite o valor para B: ");
+    scanf("%d", &b);
+
+    final = a;
+    a = b;
+    b = final;
+
+    printf("O valor de A é: %d \n", a);
+    printf("O valor de B é: %d \n", b);
+
+    return 0;
+}
